@@ -212,6 +212,11 @@ Run.flags = {
     default: true,
     allowNo: true
   }),
+  'feature-use-webpack-for-web-assets': Flags.boolean({
+    default: false,
+    description: '(experimental) Use webpack to bundle web assets',
+    dependsOn: ['web-assets']
+  }),
   actions: Flags.boolean({
     description: '[default: true] Run actions, defaults to true, to skip actions use --no-actions',
     default: true,

@@ -17,7 +17,7 @@ const BaseCommand = require('../../BaseCommand')
 const { Flags } = require('@oclif/core')
 const { runInProcess, writeConfig } = require('../../lib/app-helper')
 const RuntimeLib = require('@adobe/aio-lib-runtime')
-const { bundle } = require('@adobe/aio-lib-web')
+const { bundle, bundlewp } = require('@adobe/aio-lib-web')
 const fs = require('fs-extra')
 const aioLogger = require('@adobe/aio-lib-core-logging')('@adobe/aio-cli-plugin-app:build', { provider: 'debug' })
 
@@ -53,6 +53,9 @@ class Build extends BaseCommand {
   }
 
   async buildOneExt (name, config, flags, spinner) {
+
+    const useWebpackFront = flags['feature-use-webpack-for-web-assets']
+    
     const onProgress = !flags.verbose
       ? info => {
         spinner.text = info
@@ -109,16 +112,22 @@ class Build extends BaseCommand {
           if (script) {
             spinner.fail(chalk.green(`build-static skipped by hook '${name}'`))
           } else {
-            const entries = config.web.src + '/**/*.html'
             const bundleOptions = {
               shouldDisableCache: true,
               shouldContentHash: flags['content-hash'],
               shouldOptimize: flags['web-optimize'],
               logLevel: flags.verbose ? 'verbose' : 'warn'
             }
-            const bundler = await bundle(entries, config.web.distProd, bundleOptions, onProgress)
-            await bundler.run()
-            spinner.succeed(chalk.green(`Building web assets for '${name}'`))
+            if (useWebpackFront) {
+              const entries = config.web.src + '/index.js'
+              await bundlewp(entries, config.web.distProd, bundleOptions, onProgress)
+              spinner.succeed(chalk.green(`Building web assets for '${name}'`))
+            } else {
+              const entries = config.web.src + '/**/*.html'
+              const bundler = await bundle(entries, config.web.distProd, bundleOptions, onProgress)
+              await bundler.run()
+              spinner.succeed(chalk.green(`Building web assets for '${name}'`))
+            }
           }
         } catch (err) {
           spinner.fail(chalk.green(`Building web assets for '${name}'`))
@@ -159,6 +168,11 @@ Build.flags = {
     description: '[default: true] Build web-assets if any',
     default: true,
     allowNo: true
+  }),
+  'feature-use-webpack-for-web-assets': Flags.boolean({
+    default: false,
+    description: '(experimental) Use webpack to bundle web assets',
+    dependsOn: ['web-assets']
   }),
   'force-build': Flags.boolean({
     description: '[default: true] Force a build even if one already exists',
