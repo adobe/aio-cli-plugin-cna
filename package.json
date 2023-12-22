@@ -12,6 +12,7 @@
     "@adobe/aio-lib-core-logging": "^2.0.0",
     "@adobe/aio-lib-core-networking": "^4.1.0",
     "@adobe/aio-lib-env": "^2.0.0",
+    "@adobe/aio-lib-files": "^3.0.1",
     "@adobe/aio-lib-ims": "^6.0.0",
     "@adobe/aio-lib-runtime": "^5.0.0",
     "@adobe/aio-lib-templates": "^2.2.0",
