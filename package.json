@@ -15,7 +15,7 @@
     "@adobe/aio-lib-runtime": "^7.0.1",
     "@adobe/aio-lib-templates": "^3",
     "@adobe/aio-lib-web": "^7",
-    "@adobe/generator-aio-app": "^7",
+    "@adobe/generator-aio-app": "^8",
     "@adobe/generator-app-common-lib": "^2",
     "@adobe/inquirer-table-checkbox": "^2",
     "@oclif/core": "^2.11.6",
