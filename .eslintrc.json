@@ -8,7 +8,8 @@
       "fixtureJson": true,
       "fixtureHjson": true,
       "fixtureYaml": true,
-      "fakeFileSystem": true
+      "fakeFileSystem": true,
+      "setFetchMock": true
     },
     "settings": {
         "jsdoc": {

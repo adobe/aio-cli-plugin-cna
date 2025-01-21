@@ -379,7 +379,6 @@
     "dependencies": {
       "@adobe/generator-app-excshell": "^0.2.4",
       "@adobe/aio-sdk": "^3.0.0",
-      "node-fetch": "^2.6.0",
       "core-js": "^3.6.4",
       "react": "^16.13.1",
       "react-dom": "^16.13.1",

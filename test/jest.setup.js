@@ -69,6 +69,14 @@ global.getErrorForCallThatShouldThrowAnError = async (callThatShouldThrowAnError
   }
 }
 
+global.setFetchMock = (ok = true, status = 200, mockData = {}) => {
+  global.fetch = jest.fn().mockResolvedValue({
+    ok,
+    status,
+    text: () => Promise.resolve(mockData)
+  })
+}
+
 /* global fixtureFile, fixtureJson */
 
 const fixturesFolder = path.join(__dirname, '__fixtures__')

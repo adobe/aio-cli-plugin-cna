@@ -11,14 +11,7 @@ governing permissions and limitations under the License.
 */
 
 const fs = require('fs')
-/* eslint-disable no-unused-vars */
-const path = require('path')
-/* eslint-disable no-unused-vars */
-const chalk = require('chalk')
-const fetch = require('node-fetch')
-jest.mock('node-fetch', () => jest.fn())
 const auditLogger = require('../../../src/lib/audit-logger')
-const { getCliEnv } = require('@adobe/aio-lib-env')
 
 jest.mock('fs')
 jest.mock('chalk', () => ({
@@ -41,28 +34,12 @@ const mockLogEvent = {
   orgId: 'mockorg'
 }
 
-const mockResponse = Promise.resolve({
-  ok: true,
-  status: 200,
-  text: () => {
-    return {}
-  }
-})
-
-const mockErrorResponse = Promise.resolve({
-  ok: false,
-  status: 400,
-  text: () => {
-    return {}
-  }
-})
-
 beforeEach(() => {
-  fetch.mockReset()
+  setFetchMock(true, 200, {})
 })
 
 test('sendAuditLogs with valid params', async () => {
-  fetch.mockReturnValue(mockResponse)
+  setFetchMock(true, 200, {})
   const options = {
     method: 'POST',
     headers: {
@@ -78,7 +55,7 @@ test('sendAuditLogs with valid params', async () => {
 
 // NOTE: this test is blocked until the audit service is available in prod
 test('sendAuditLogs with default params', async () => {
-  fetch.mockReturnValue(mockResponse)
+  setFetchMock(true, 200, {})
   const options = {
     method: 'POST',
     headers: {
@@ -93,7 +70,7 @@ test('sendAuditLogs with default params', async () => {
 })
 
 test('should take prod endpoint if calling sendAuditLogs with non-exisiting env', async () => {
-  fetch.mockReturnValue(mockResponse)
+  setFetchMock(true, 200, {})
   const options = {
     method: 'POST',
     headers: {
@@ -108,7 +85,7 @@ test('should take prod endpoint if calling sendAuditLogs with non-exisiting env'
 })
 
 test('sendAuditLogs error response', async () => {
-  fetch.mockReturnValue(mockErrorResponse)
+  setFetchMock(false, 400, {})
   const options = {
     method: 'POST',
     headers: {

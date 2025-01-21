@@ -167,8 +167,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-      "@adobe/aio-sdk": "^3.0.0",
-      "node-fetch": "^2.6.0"
+      "@adobe/aio-sdk": "^3.0.0"
     },
     "devDependencies": {
       "jest": "^27.2.4",

@@ -9,8 +9,6 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const fetch = require('node-fetch')
-
 const DOCKER_ORG = 'adobeapiplatform'
 const DOCKER_REPOS = { // repo-name:kind
   'adobe-action-nodejs-v10': 'nodejs:10',
