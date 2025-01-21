@@ -42,7 +42,7 @@
     "lodash.clonedeep": "^4.5.0",
     "node-abort-controller": "^3.1.1",
     "node-fetch": "^2.6.7",
-    "open": "^8.4.2",
+    "open": "^10.1.0",
     "ora": "^5",
     "pure-http": "^3",
     "serve-static": "^1.14.1",
