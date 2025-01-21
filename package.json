@@ -30,7 +30,7 @@
     "debug": "^4.1.1",
     "dedent-js": "^1.0.1",
     "dotenv": "^16",
-    "execa": "^5.0.0",
+    "execa": "^9.5.2",
     "fs-extra": "^11.1.1",
     "get-port": "^5",
     "hjson": "^3.2.1",
