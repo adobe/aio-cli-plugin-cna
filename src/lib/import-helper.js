@@ -413,7 +413,7 @@ async function writeEnv (json, parentFolder, flags, extraEnvVars) {
 
   const data = Object
     .keys(resultObject)
-    .map(key => `${key}=${resultObject[key]}`)
+    .map(key => `${key.toUpperCase()}=${resultObject[key]}`)
     .join(EOL)
     .concat(EOL)
   aioLogger.debug(`writeEnv - data:${data}`)
