@@ -43,7 +43,7 @@
     "node-abort-controller": "^3.1.1",
     "node-fetch": "^2.6.7",
     "open": "^8.4.2",
-    "ora": "^5",
+    "ora": "^8",
     "pure-http": "^3",
     "serve-static": "^1.14.1",
     "term-size": "^2.2.1",
